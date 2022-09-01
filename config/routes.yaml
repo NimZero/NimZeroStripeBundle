@@ -1,0 +1,4 @@
+nimzero.stripe_bundle.stripe.endpoint:
+  path: /stripe/endpoint
+  controller: Nimzero\StripeBundle\Controller\StripeWebhookEndpointController::StripeWebhookEndpoint
+  methods: POST

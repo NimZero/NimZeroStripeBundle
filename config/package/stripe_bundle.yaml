@@ -1,0 +1,14 @@
+nimzero_stripe:
+
+    ### The following keys and secrets are sensitive you may want to use secrets to store them: https://symfony.com/doc/current/configuration/secrets.html
+
+    stripe:
+        # Your stripe API keys.
+        api_secret_key: '%env(STRIPE_API_SECRET_KEY)%'
+        api_public_key: '%env(STRIPE_API_PUBLIC_KEY)%'
+
+        # This secret is used to validate the origin of the request. You can get it on your webhook page under 'Signing Secret'.
+        webhook_secret: '%env(STRIPE_WEBHOOK_SECRET)%'
+
+        # The tolerance is the maximum allowed difference in seconds between the current timestamp and the timestamp in the request header.
+        tolerance: 300
