@@ -27,7 +27,11 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('api_secret_key')
                             ->isRequired()
                             ->cannotBeEmpty()
-                        ->end() // webhook_secret
+                        ->end() // api_secret_key
+                        ->scalarNode('api_public_key')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end() // api_public_key
                         ->scalarNode('webhook_secret')
                             ->isRequired()
                             ->cannotBeEmpty()
