@@ -30,7 +30,7 @@ class StripeEvent extends Event
     }
 
     /**
-     * abstractStripeEvent->failed()
+     * StripeEvent->failed()
      * 
      * Set the event processing as failed and provide an error message wich is sent in the response.
      * The message can be overriden by the setMessage() methode.
@@ -47,7 +47,7 @@ class StripeEvent extends Event
     }
 
     /**
-     * abstractStripeEvent->setMessage()
+     * StripeEvent->setMessage()
      * 
      * Allow to set a message that will be returned in the response.
      * Override the message set with the failed() methode.
@@ -62,11 +62,21 @@ class StripeEvent extends Event
         return $this->message;
     }
 
+    /**
+     * StripeEvent->getEvent()
+     * 
+     * @return \Stripe\Event the Stripe\Event object created when receiving the event
+     */
     public function getEvent(): \Stripe\Event
     {
         return $this->event;
     }
 
+    /**
+     * StripeEvent->getObject()
+     * 
+     * @return \Stripe\StripeObject the object from the event
+     */
     public function getObject(): \Stripe\StripeObject
     {
         /** @phpstan-ignore-next-line */
@@ -74,10 +84,10 @@ class StripeEvent extends Event
     }
 
     /**
-     * abstractStripeEvent->getConnectAccount()
+     * StripeEvent->getConnectAccount()
      * 
-     * Return the ID of the Stripe account concerned by the event.
      * Used by the Stripe Connect API.
+     * @return ?string the ID of the Stripe account concerned by the event.
      */
     public function getConnectAccount(): ?String
     {

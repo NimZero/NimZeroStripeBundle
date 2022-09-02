@@ -1,6 +1,6 @@
 nimzero_stripe:
 
-    ### The following keys and secrets are sensitive you may want to use secrets to store them: https://symfony.com/doc/current/configuration/secrets.html
+    # The following keys and secrets are sensitive you may want to use secrets to store them: https://symfony.com/doc/current/configuration/secrets.html
 
     stripe:
         # Your stripe API keys.
