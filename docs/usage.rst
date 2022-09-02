@@ -33,7 +33,11 @@ Exemple with the customer.subscription.created event to get update when a subscr
 
         public function onSubscriptionCreated(StripeEvent $event)
         {
-            // ...
+            // event failed
+            $event->failed('Failed message');
+
+            // success
+            $event->setMessage('Success message');
         }
     }
 

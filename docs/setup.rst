@@ -2,7 +2,7 @@
 Setup
 =====
 
-Step 1: Improt the bundle route
+Step 1: Import the bundle route
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Add the following lines in your ``config/routes.yaml`` file::
@@ -36,7 +36,9 @@ Create a `webhook`_ to receive updates from Stripe::
 Next step:
 ==========
 `Use`_ the bundle.
+`Override`_ the route
 
 .. _`dashboard`: https://dashboard.stripe.com/apikeys
 .. _`webhook`: https://stripe.com/docs/webhooks
 .. _`Use`: usage.rst
+.. _`Override`: override.rst
