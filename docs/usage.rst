@@ -2,6 +2,15 @@
 Usage
 =====
 
+Services
+~~~~~~~~
+
+The bundle provide a Symfony service ``Nimzero\StripeBundle\Serivce\Stripe`` that can be autowired.
+This service provide the getClient method wich give you access to a ``StripeClient`` configured with your API secret key.
+
+Events
+~~~~~~
+
 The bundle allows you to create `Symfony event listener or subscriber`_ for every Stripe `events`_ by simply prefixing the event type with ``nimzero.stripe_bundle.``
 
 To do so the bundle provide a new event type ``StripeEvent``

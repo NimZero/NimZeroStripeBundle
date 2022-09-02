@@ -35,8 +35,8 @@ Create a `webhook`_ to receive updates from Stripe::
 
 Next step:
 ==========
-`Use`_ the bundle.
-`Override`_ the route
+| `Use`_ the bundle.
+| `Override`_ the route
 
 .. _`dashboard`: https://dashboard.stripe.com/apikeys
 .. _`webhook`: https://stripe.com/docs/webhooks
