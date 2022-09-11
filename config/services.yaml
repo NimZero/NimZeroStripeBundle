@@ -9,9 +9,16 @@ services:
     exclude: '../src/{DependencyInjection,Entity}'
 
   nimzero.stripe_bundle.service.stripe:
-    public: true
+    public: false
     class: Nimzero\StripeBundle\Service\Stripe
     arguments:
       $api_secret_key: ''
 
+  nimzero.stripe_bundle.maker.listener:
+    public: false
+    class: Nimzero\StripeBundle\Maker\MakeListener
+    arguments:
+      - '@maker.file_manager'
+
   Nimzero\StripeBundle\Service\Stripe: '@nimzero.stripe_bundle.service.stripe'
+  Nimzero\StripeBundle\Maker\MakeListener: '@nimzero.stripe_bundle.maker.listener'

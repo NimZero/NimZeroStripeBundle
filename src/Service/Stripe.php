@@ -31,4 +31,12 @@ class Stripe
 
         return self::$client;
     }
+
+    public function isLive(): bool
+    {
+        return str_starts_with(
+            $this->api_secret_key,
+            'sk_live'
+        );
+    }
 }
