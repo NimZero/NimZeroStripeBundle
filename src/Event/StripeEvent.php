@@ -13,10 +13,17 @@ namespace Nimzero\StripeBundle\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 
+/**
+ * StripeEvent is a base class to process Stripe events
+ * 
+ * This class is ussed by the bundle's webhook endpoint
+ * 
+ * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
+ */
 class StripeEvent extends Event
 {
     protected Bool $failed;
-    protected String $message;
+    protected ?String $message;
     protected \Stripe\Event $event;
 
     /**
@@ -25,22 +32,27 @@ class StripeEvent extends Event
     public function __construct(\Stripe\Event $event)
     {
         $this->failed = false;
-        $this->message = '';
+        $this->message = null;
         $this->event = $event;
     }
 
     /**
      * StripeEvent->failed()
      * 
-     * Set the event processing as failed and provide an error message wich is sent in the response.
+     * Set the event processing as failed and provide an error message wich is sent in a HTTP 500 (internal server error) response.
      * The message can be overriden by the setMessage() methode.
      */
-    public function failed(String $message = ''): void
+    public function failed(String $message = null): void
     {
         $this->failed = true;
         $this->message = $message;
     }
 
+    /**
+     * StripeEvent->isFailed()
+     * 
+     * @return bool true if processing has failed false otherwise
+     */
     public function isFailed(): Bool
     {
         return $this->failed;
@@ -50,14 +62,19 @@ class StripeEvent extends Event
      * StripeEvent->setMessage()
      * 
      * Allow to set a message that will be returned in the response.
-     * Override the message set with the failed() methode.
+     * Override the message set with the failed() method.
      */
-    public function setMessage(String $message): void
+    public function setMessage(?String $message): void
     {
         $this->message = $message;
     }
 
-    public function getMessage(): string
+    /**
+     * StripeEvent->getMessage()
+     * 
+     * @return ?string the message set by StripeEvent->failed() or StripeEvent->setMessage()
+     */
+    public function getMessage(): ?string
     {
         return $this->message;
     }

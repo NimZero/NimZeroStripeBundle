@@ -12,34 +12,38 @@
 namespace Nimzero\StripeBundle\Command;
 
 use Nimzero\StripeBundle\Service\Stripe;
+use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * This command create a event subscriber for all the events of the given webhook
+ * 
+ * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
+ */
 class SubscriberFromWebhookCommand extends Command
 {
-  protected static $defaultName = 'nzstripe:subscriber:fromWebhook';
+  protected static $defaultName = 'nzstripe:subscriber:from_webhook';
+  protected static $defaultDescription = 'This command create a event subscriber for all (not each) the events of the given webhook';
 
   private Stripe $stripe;
-  private UrlGeneratorInterface $urlGenerator;
 
-  public function __construct(Stripe $stripe, UrlGeneratorInterface $urlGenerator)
+  public function __construct(Stripe $stripe)
   {
     parent::__construct();
     $this->stripe = $stripe;
-    $this->urlGenerator = $urlGenerator;
   }
 
-  protected function configure()
+  protected function configure(): void
   {
     $this->addArgument('webhook', InputArgument::REQUIRED, 'The id of the webhook to create a subscriber for');
   }
 
-  protected function interact(InputInterface $input, OutputInterface $output)
+  protected function interact(InputInterface $input, OutputInterface $output): void
   {
     if (!$input->getArgument('webhook')) {
       $io = new SymfonyStyle($input, $output);
@@ -55,8 +59,11 @@ class SubscriberFromWebhookCommand extends Command
 
     $stripeClient = $this->stripe->getClient();
 
+    /** @var string */
+    $whId = $input->getArgument('webhook');
+
     try {
-      $webhook = $stripeClient->webhookEndpoints->retrieve($input->getArgument('webhook'));
+      $webhook = $stripeClient->webhookEndpoints->retrieve($whId);
     } catch (\Stripe\Exception\ApiErrorException $e) {
       $io->error('Stripe API error: ' . $e->getMessage());
       return Command::FAILURE;
@@ -64,7 +71,11 @@ class SubscriberFromWebhookCommand extends Command
 
     $events = $webhook->enabled_events;
 
-    $command = $this->getApplication()->find('make:nzstripe:subscriber');
+    // Use the bundle make command 'make:nzstripe:subscriber' to generate the subscriber
+
+    /** @var \Symfony\Component\Console\Application */
+    $app = $this->getApplication();
+    $command = $app->find('make:nzstripe:subscriber');
 
     $arguments = [
         'name'    => 'Webhook',

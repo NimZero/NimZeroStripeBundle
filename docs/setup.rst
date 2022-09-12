@@ -25,7 +25,7 @@ Get your Stripe api keys from the `dashboard`_::
 Step 3: Stripe webhook
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Create a `webhook`_ to receive updates from Stripe::
+Create a `webhook`_ to receive updates from Stripe and add it's signing secret to your .env::
 
     // .env
     ###> nimzero/stripe-bundle ###

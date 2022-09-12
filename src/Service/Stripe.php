@@ -13,6 +13,11 @@ namespace Nimzero\StripeBundle\Service;
 
 use Stripe\StripeClient;
 
+/**
+ * This service provide access to a Stripe/StripeClient and helper methods
+ * 
+ * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
+ */
 class Stripe
 {
     private string $api_secret_key;
@@ -23,6 +28,11 @@ class Stripe
         $this->api_secret_key = $api_secret_key;
     }
 
+    /**
+     * Stripe->getClient()
+     * 
+     * @return StripeClient initialized with your Stripe API key
+     */
     public function getClient(): StripeClient
     {
         if (is_null(self::$client)) {
@@ -32,6 +42,11 @@ class Stripe
         return self::$client;
     }
 
+    /**
+     * Stripe->isLive()
+     * 
+     * @return bool indicate if your key grant live access
+     */
     public function isLive(): bool
     {
         return str_starts_with(

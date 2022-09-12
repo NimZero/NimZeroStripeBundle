@@ -66,7 +66,7 @@ class MakeListener extends AbstractMaker
     $subscriberClassNameDetails = $generator->createClassNameDetails(
       $name,
       'EventListener\\',
-      'Listener'
+      'EventListener'
     );
 
     /** @var string[] */
