@@ -5,7 +5,7 @@ Usage
 Services
 ~~~~~~~~
 
-The bundle provide a Symfony service ``Nimzero\StripeBundle\Serivce\Stripe`` that can be autowired.
+The bundle provide a Symfony service ``Nimzero\StripeBundle\Serivce\StripeService`` that can be autowired through ``Nimzero\StripeBundle\Serivce\StripeInterface``.
 This service provide helpers:
 
 - getClient a method wich give you access to a ``Stripe/StripeClient`` configured with your API secret key.

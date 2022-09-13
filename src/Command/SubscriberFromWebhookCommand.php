@@ -11,7 +11,8 @@
 
 namespace Nimzero\StripeBundle\Command;
 
-use Nimzero\StripeBundle\Service\Stripe;
+use Nimzero\StripeBundle\Service\StripeInterface;
+use Nimzero\StripeBundle\Service\StripeService;
 use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -30,9 +31,9 @@ class SubscriberFromWebhookCommand extends Command
   protected static $defaultName = 'nzstripe:subscriber:from_webhook';
   protected static $defaultDescription = 'This command create a event subscriber for all (not each) the events of the given webhook';
 
-  private Stripe $stripe;
+  private StripeService $stripe;
 
-  public function __construct(Stripe $stripe)
+  public function __construct(StripeInterface $stripe)
   {
     parent::__construct();
     $this->stripe = $stripe;

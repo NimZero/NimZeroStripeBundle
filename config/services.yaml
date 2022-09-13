@@ -10,7 +10,7 @@ services:
 
   nimzero.stripe_bundle.service.stripe:
     public: false
-    class: Nimzero\StripeBundle\Service\Stripe
+    class: Nimzero\StripeBundle\Service\StripeService
     arguments:
       $api_secret_key: ''
 
@@ -20,5 +20,5 @@ services:
     arguments:
       - '@maker.file_manager'
 
-  Nimzero\StripeBundle\Service\Stripe: '@nimzero.stripe_bundle.service.stripe'
+  Nimzero\StripeBundle\Service\StripeInterface: '@nimzero.stripe_bundle.service.stripe'
   Nimzero\StripeBundle\Maker\MakeListener: '@nimzero.stripe_bundle.maker.listener'
