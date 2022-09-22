@@ -1,9 +1,13 @@
 NimZeroStripeBundle
 ===================
 
-[![LICENCE](https://img.shields.io/github/license/NimZero/NimZeroStripeBundle)](LICENSE)
+[![License](https://img.shields.io/packagist/l/nimzero/stripe-bundle)](LICENSE)
 ![Symfony](https://img.shields.io/badge/Symfony-5.4%20%7C%206.x-blue?logo=symfony)
 ![PHP](https://img.shields.io/badge/php-%3E%3D7.4-blue?logo=php) 
+
+![Packagist Downloads](https://img.shields.io/packagist/dt/nimzero/stripe-bundle)
+![Packagist Downloads](https://img.shields.io/packagist/dm/nimzero/stripe-bundle)
+![Packagist Stars](https://img.shields.io/packagist/stars/nimzero/stripe-bundle) 
 
 This bundle provides a base endpoint and utils to support the [Stripe](https://stripe.com) service in your Symfony application.
 
