@@ -22,6 +22,13 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+/**
+ * This class adds a maker bundle entry to generate event subscriber for stripe webhook events.
+ * It makes use of the StripeEvent shiped with this bundle.
+ * 
+ * @since 1.0.0
+ * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
+ */
 class MakeSubscriber extends AbstractMaker
 {
   private KernelInterface $kernel;

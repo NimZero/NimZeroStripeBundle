@@ -18,6 +18,7 @@ use Symfony\Contracts\EventDispatcher\Event;
  * 
  * This class is ussed by the bundle's webhook endpoint
  * 
+ * @since 1.0.0
  * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
  */
 class StripeEvent extends Event

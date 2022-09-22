@@ -20,6 +20,7 @@ use Nimzero\StripeBundle\Event\StripeEvent;
 /**
  * This controller provides a default webhook endpoint to handle Stripe events
  * 
+ * @since 1.0.0
  * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
  */
 class StripeWebhookEndpointController extends AbstractController

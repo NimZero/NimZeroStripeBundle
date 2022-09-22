@@ -16,6 +16,7 @@ namespace Nimzero\StripeBundle\Entity;
  * @method ?string getStripeCustomerId() returns the Stripe customer id of the user.
  * @method setStripeCustomerId(?string $stripeCustomerId) set the Stripe customer id of the user.
  * 
+ * @since 1.0.0
  * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
  */
 interface StripeCustomerInterface
@@ -34,7 +35,8 @@ interface StripeCustomerInterface
    * 
    * This value should be stored in a nullable string property.
    * 
-   * @param ?string $stripeCustomerId 
+   * @param ?string $stripeCustomerId
+   * @return self
    */
   public function setStripeCustomerId(?string $stripeCustomerId);
 }

@@ -16,9 +16,10 @@ use Stripe\StripeClient;
 /**
  * This service provide access to a Stripe/StripeClient and helper methods
  * 
+ * @since 1.0.0
  * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
  */
-class StripeService implements StripeInterface
+class StripeService implements StripeServiceInterface
 {
     private string $api_secret_key;
     private static ?StripeClient $client = null;

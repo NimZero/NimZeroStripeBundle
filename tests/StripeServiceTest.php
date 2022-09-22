@@ -11,25 +11,25 @@
 
 namespace Nimzero\StripeBundle\Tests;
 
-use Nimzero\StripeBundle\Service\Stripe;
+use Nimzero\StripeBundle\Service\StripeService;
 use PHPUnit\Framework\TestCase;
 
 class StripeServiceTest extends TestCase
 {
   public function testIsLive(): void
   {
-    $stripe = new Stripe('sk_live_xxxxxxxxxxxxxxx');
+    $stripe = new StripeService('sk_live_xxxxxxxxxxxxxxx');
 
     $this->assertTrue($stripe->isLive(), 'Stripe service isLive() should return true with key sk_live_xxxxxxxxxxxxxxx');
 
-    $stripe = new Stripe('sk_test_xxxxxxxxxxxxxxx');
+    $stripe = new StripeService('sk_test_xxxxxxxxxxxxxxx');
 
     $this->assertFalse($stripe->isLive(), 'Stripe service isLive() should return false with key sk_test_xxxxxxxxxxxxxxx');
   }
 
   public function testGetClient()
   {
-    $stripe = new Stripe('sk_live_xxxxxxxxxxxxxxx');
+    $stripe = new StripeService('sk_live_xxxxxxxxxxxxxxx');
 
     $client = $stripe->getClient();
 

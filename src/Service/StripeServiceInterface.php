@@ -13,7 +13,13 @@ namespace Nimzero\StripeBundle\Service;
 
 use Stripe\StripeClient;
 
-interface StripeInterface
+/**
+ * This interface is used to autowire the StripeService class.
+ * 
+ * @since 1.0.0
+ * @author TESTA 'NimZero' Charly <contact@nimzero.fr>
+ */
+interface StripeServiceInterface
 {
   /**
    * @return StripeClient
