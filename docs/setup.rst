@@ -22,6 +22,14 @@ Get your Stripe api keys from the `dashboard`_::
     STRIPE_API_PUBLIC_KEY='<public key>'
     ###< nimzero/stripe-bundle ###
 
+| Optionaly, you can define the Stripe api version to use in ``config/packages/nimzero_stripe.yaml``
+| Leaving the value empty or null will use the version deined in your Stripe account::
+
+    // config/packages/nimzero_stripe.yaml
+        stripe:
+            # The Stripe api version to use, set to null to use your Stripe account version
+            api_version: <version in YYYY-MM-DD format>
+
 Step 3: Stripe webhook
 ~~~~~~~~~~~~~~~~~~~~~~
 
