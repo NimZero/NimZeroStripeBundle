@@ -22,11 +22,13 @@ use Stripe\StripeClient;
 class StripeService implements StripeServiceInterface
 {
     private string $api_secret_key;
+    private ?string $api_version;
     private static ?StripeClient $client = null;
 
-    public function __construct(string $api_secret_key)
+    public function __construct(string $api_secret_key, ?string $api_version)
     {
         $this->api_secret_key = $api_secret_key;
+        $this->api_version = $api_version;
     }
 
     /**
@@ -37,7 +39,10 @@ class StripeService implements StripeServiceInterface
     public function getClient(): StripeClient
     {
         if (is_null(self::$client)) {
-            self::$client = new StripeClient($this->api_secret_key);
+            self::$client = new StripeClient([
+                'api_key' => $this->api_secret_key,
+                'stripe_version' => $this->api_version,
+            ]);
         }
 
         return self::$client;

@@ -3,6 +3,9 @@ nimzero_stripe:
     # The following keys and secrets are sensitive you may want to use secrets to store them: https://symfony.com/doc/current/configuration/secrets.html
 
     stripe:
+        # The Stripe api version to use, set to null to use your Stripe account version
+        api_version: ~
+
         # Your stripe API keys.
         api_secret_key: '%env(STRIPE_API_SECRET_KEY)%'
         api_public_key: '%env(STRIPE_API_PUBLIC_KEY)%'

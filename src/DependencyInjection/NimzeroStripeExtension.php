@@ -37,6 +37,7 @@ class NimzeroStripeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         // Process the config to container parameters
+        $container->setParameter('nimzero.stripe_bundle.stripe.api_version', $config['stripe']['api_version']);
         $container->setParameter('nimzero.stripe_bundle.stripe.api_secret_key', $config['stripe']['api_secret_key']);
         $container->setParameter('nimzero.stripe_bundle.stripe.api_public_key', $config['stripe']['api_public_key']);
         $container->setParameter('nimzero.stripe_bundle.stripe.webhook_secret', $config['stripe']['webhook_secret']);
@@ -45,5 +46,6 @@ class NimzeroStripeExtension extends Extension
         // Configure services with their parameters        
         $stripe = $container->getDefinition('nimzero.stripe_bundle.service.stripe');
         $stripe->replaceArgument('$api_secret_key', $config['stripe']['api_secret_key']);
+        $stripe->replaceArgument('$api_version', $config['stripe']['api_version']);
     }
 }

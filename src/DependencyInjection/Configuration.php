@@ -24,6 +24,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('stripe')
                     ->children()
+                        ->scalarNode('api_version')
+                            ->defaultNull()
+                            ->isRequired()
+                        ->end() // api_version
                         ->scalarNode('api_secret_key')
                             ->isRequired()
                             ->cannotBeEmpty()
