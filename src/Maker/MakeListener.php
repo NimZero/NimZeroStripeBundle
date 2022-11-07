@@ -22,6 +22,7 @@ use Symfony\Bundle\MakerBundle\Util\YamlSourceManipulator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -56,6 +57,7 @@ class MakeListener extends AbstractMaker
   {
     $command
       ->addArgument('name', InputArgument::REQUIRED, sprintf('The name of the listener class (e.g. <fg=yellow>%sType</>)', Str::asClassName(Str::getRandomTerm())))
+      ->addOption('doctrine', 'd', InputOption::VALUE_NONE, 'Add the "Doctrine\Persistence\ManagerRegistry" as a "doctrine" attribut in your listener')
       ->addArgument('event', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'The name(s) of the evnts(s) (e.g. <fg=yellow>customer.subscription.created</>)');
 
       $inputConfig->setArgumentAsNonInteractive('event');
@@ -76,6 +78,9 @@ class MakeListener extends AbstractMaker
       'EventListener'
     );
 
+    /** @var bool */
+    $doctrine = $input->getOption('doctrine');
+
     /** @var string[] */
     $events = $input->getArgument('event');
 
@@ -92,6 +97,7 @@ class MakeListener extends AbstractMaker
       $subscriberClassNameDetails->getFullName(),
       "$path/listener/Listener.tpl.php",
       [
+        'doctrine' => $doctrine,
         'events' => $events,
         'methods' => $methods
       ]

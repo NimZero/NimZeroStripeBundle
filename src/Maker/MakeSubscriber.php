@@ -20,6 +20,7 @@ use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -52,6 +53,7 @@ class MakeSubscriber extends AbstractMaker
   {
     $command
       ->addArgument('name', InputArgument::REQUIRED, sprintf('The name of the subscriber class (e.g. <fg=yellow>%sType</>)', Str::asClassName(Str::getRandomTerm())))
+      ->addOption('doctrine', 'd', InputOption::VALUE_NONE, 'Add the "Doctrine\Persistence\ManagerRegistry" as a "doctrine" attribut in your subscriber')
       ->addArgument('event', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'The name(s) of the evnts(s) (e.g. <fg=yellow>customer.subscription.created</>)');
 
       $inputConfig->setArgumentAsNonInteractive('event');
@@ -72,6 +74,9 @@ class MakeSubscriber extends AbstractMaker
       'EventSubscriber'
     );
 
+    /** @var bool */
+    $doctrine = $input->getOption('doctrine');
+
     /** @var string[] */
     $events = $input->getArgument('event');
 
@@ -88,8 +93,9 @@ class MakeSubscriber extends AbstractMaker
       $subscriberClassNameDetails->getFullName(),
       "$path/subscriber/Subscriber.tpl.php",
       [
+        'doctrine' => $doctrine,
         'events' => $events,
-        'methods' => $methods
+        'methods' => $methods,
       ]
     );
 

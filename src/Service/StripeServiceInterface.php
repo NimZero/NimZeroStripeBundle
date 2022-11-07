@@ -27,7 +27,26 @@ interface StripeServiceInterface
   public function getClient();
 
   /**
-   * @return bool
+   * @since 1.1.0
+   * @return bool indicate if your api keys grant live access
    */
   public function isLive();
+
+  /**
+   * @since 1.1.0
+   * @return string your Stripe API secret key
+   */
+  public function getApiSecretKey();
+  
+  /**
+   * @since 1.1.0
+   * @return string your Stripe API public key
+   */
+  public function getApiPublicKey();
+
+  /**
+   * @since 1.1.0
+   * @return ?string your configured api version null if not set
+   */
+  public function getApiVersion();
 }

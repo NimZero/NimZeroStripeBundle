@@ -21,14 +21,12 @@ use Stripe\StripeClient;
  */
 class StripeService implements StripeServiceInterface
 {
-    private string $api_secret_key;
-    private ?string $api_version;
+    private array $stripe_config;
     private static ?StripeClient $client = null;
 
-    public function __construct(string $api_secret_key, ?string $api_version)
+    public function __construct(array $stripe_config)
     {
-        $this->api_secret_key = $api_secret_key;
-        $this->api_version = $api_version;
+        $this->stripe_config = $stripe_config;
     }
 
     /**
@@ -40,8 +38,8 @@ class StripeService implements StripeServiceInterface
     {
         if (is_null(self::$client)) {
             self::$client = new StripeClient([
-                'api_key' => $this->api_secret_key,
-                'stripe_version' => $this->api_version,
+                'api_key' => $this->stripe_config['api_secret_key'],
+                'stripe_version' => $this->stripe_config['api_version'],
             ]);
         }
 
@@ -56,8 +54,23 @@ class StripeService implements StripeServiceInterface
     public function isLive(): bool
     {
         return str_starts_with(
-            $this->api_secret_key,
+            $this->stripe_config['api_secret_key'],
             'sk_live'
         );
+    }
+
+    public function getApiSecretKey(): string
+    {
+        return $this->stripe_config['api_secret_key'];
+    }
+
+    public function getApiPublicKey(): string
+    {
+        return $this->stripe_config['api_public_key'];
+    }
+
+    public function getApiVersion(): ?string
+    {
+        return $this->stripe_config['api_version'];
     }
 }

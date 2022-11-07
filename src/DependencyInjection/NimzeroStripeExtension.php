@@ -45,7 +45,6 @@ class NimzeroStripeExtension extends Extension
 
         // Configure services with their parameters        
         $stripe = $container->getDefinition('nimzero.stripe_bundle.service.stripe');
-        $stripe->replaceArgument('$api_secret_key', $config['stripe']['api_secret_key']);
-        $stripe->replaceArgument('$api_version', $config['stripe']['api_version']);
+        $stripe->replaceArgument('$stripe_config', $config['stripe']);
     }
 }

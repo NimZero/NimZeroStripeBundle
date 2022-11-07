@@ -11,8 +11,7 @@ services:
     public: false
     class: Nimzero\StripeBundle\Service\StripeService
     arguments:
-      $api_secret_key: ''
-      $api_version: ''
+      $stripe_config: ''
 
   nimzero.stripe_bundle.maker.listener:
     public: false
