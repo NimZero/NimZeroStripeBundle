@@ -1,0 +1,21 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    Nimzero\StripeBundle\:
+        resource: '../src/'
+
+    nimzero_stripe_bundle.stripe_helper:
+        class: Nimzero\StripeBundle\Service\StripeHelper
+        public: false
+        arguments:
+            '$stripe_config': null
+
+    nimzero_stripe_bundle.maker.webhook_from_events:
+        class: Nimzero\StripeBundle\Maker\MakeWebhookFromEvents
+        arguments:
+            '$eventRegistry': '@maker.event_registry'
+
+    Nimzero\StripeBundle\Service\StripeHelper: '@nimzero_stripe_bundle.stripe_helper'
+    Nimzero\StripeBundle\Maker\MakeWebhookFromEvents: '@nimzero_stripe_bundle.maker.webhook_from_events'

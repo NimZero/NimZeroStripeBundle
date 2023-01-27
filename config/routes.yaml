@@ -1,0 +1,12 @@
+nimzero.stripe_bundle.stripe.webhook_endpoint:
+    controller: Nimzero\StripeBundle\Controller\StripeWebhookEndpointController::stripeWebhookEndpoint
+    path: /stripe/endpoint/{mode}
+    requirements:
+        mode: live|test
+    methods: POST
+
+nimzero.stripe_bundle.stripe.express_dashboard:
+    controller: Nimzero\StripeBundle\Controller\StripeExpressDashboardController::stripeExpressDashboardController
+    path: /stripe/express_dashboard/{mode}
+    requirements:
+        mode: live|test
