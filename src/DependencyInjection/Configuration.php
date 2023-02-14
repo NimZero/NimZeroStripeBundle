@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
                     ->info('Used to configure the Stripe version used by the StripeClient, if null use your Stripe account default version')
                     ->defaultNull()
                     ->validate()
-                        ->ifTrue(function ($v) {return !$this->validateDate($v);})
+                        ->ifTrue(function ($v) {return !is_null($v) && !$this->validateDate($v);})
                         ->thenInvalid('The api version should be in the YYYY-MM-DD format')
                     ->end()
                 ->end() // api_version

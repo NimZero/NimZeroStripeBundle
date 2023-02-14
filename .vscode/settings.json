@@ -13,4 +13,5 @@
         }
     ],
     "phpGettersSetters.templatesDir": "/var/www/dev.nimzero.fr/NimZeroStripeBundle/.vscode",
+    "esbonio.sphinx.confDir": "",
 }

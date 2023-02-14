@@ -1,5 +1,5 @@
 {
-    "name": "nimzero/stripe-bundle-2",
+    "name": "nimzero/stripe-bundle",
     "type": "symfony-bundle",
     "description": "A Stripe helper for Symfony application",
     "license": "MIT",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.4 | ^8.0",
+        "php": ">=8.0",
         "stripe/stripe-php": ">=10.0.0",
         "symfony/http-kernel": "^5.4 | ^6.0",
         "symfony/dependency-injection": "^5.4 | ^6.0",
