@@ -16,7 +16,7 @@ use Twig\TwigFilter;
 
 class StripeTwigExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('toBaseUnit', [StripeTwigRuntime::class, 'toBaseUnit']),
