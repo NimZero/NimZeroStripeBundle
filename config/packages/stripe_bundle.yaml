@@ -1,7 +1,7 @@
 nimzero_stripe:
 
     # Used to configure the Stripe version used by the StripeClient, if null use your Stripe account default version
-    api_version: ~
+    api_version: null
 
     # The tolerance is the allowed difference in seconds between the current timestamp and the timestamp in the request header
     tolerance: 300

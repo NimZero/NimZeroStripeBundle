@@ -66,7 +66,7 @@ class StripeWebhookEndpointController extends AbstractController
         }
 
         // Prefix the stripe event name with the bundle name
-        $type = 'stripe_bundle'.'.'.$event->type;
+        $type = 'stripe_bundle.'.$event->type;
 
         // Create the event to be dispatched
         $stripeEvent = new StripeEvent($event);

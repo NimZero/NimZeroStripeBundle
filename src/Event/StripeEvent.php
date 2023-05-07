@@ -25,6 +25,7 @@ class StripeEvent extends Event
     {
         $this->stripeEvent = $stripeEvent;
         $this->responseStatus = Response::HTTP_OK;
+        $this->message = null;
     }
 
     public function resendWebhook(?string $reason = null, int $status = Response::HTTP_BAD_REQUEST, bool $stopPropagation = true)

@@ -11,10 +11,12 @@
 
 namespace Nimzero\StripeBundle\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Nimzero\StripeBundle\Service\StripeHelper;
+use Nimzero\StripeBundle\Twig\StripeTwigExtension;
+use Nimzero\StripeBundle\Twig\StripeTwigRuntime;
 
 class NimzeroStripeExtension extends Extension
 {
@@ -23,15 +25,26 @@ class NimzeroStripeExtension extends Extension
 		$configuration = new Configuration();
 		$mergedConfig = $this->processConfiguration($configuration,$configs);
 
-		$loader = new YamlFileLoader(
-			$container,
-			new FileLocator(__DIR__.'/../../config')
-		);
+		$stripeHelper = (new Definition(StripeHelper::class))
+            ->setPublic(true)
+            ->setArgument('$stripe_config', $mergedConfig)
+        ;
 
-		$loader->load('services.yaml');
+		$twigExtension = (new Definition(StripeTwigExtension::class))
+            ->setPublic(true)
+            ->addTag('twig.extension')
+        ;
 
-		// Configure services with their parameters        
-        $stripeHelperService = $container->getDefinition('nimzero_stripe_bundle.stripe_helper');
-        $stripeHelperService->replaceArgument('$stripe_config', $mergedConfig);
+        $twigRuntime = (new Definition(StripeTwigRuntime::class))
+            ->setPublic(true)
+            ->setAutowired(true)
+            ->addTag('twig.runtime')
+        ;
+
+        $container->addDefinitions([
+			'nimzero_stripe_bundle.stripe_helper' => $stripeHelper,
+            'nimzero_stripe_bundle.twig_extension' => $twigExtension,
+            'nimzero_stripe_bundle.twig_extension_runtime' => $twigRuntime,
+        ]);
 	}
 }
