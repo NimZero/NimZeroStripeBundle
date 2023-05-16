@@ -29,11 +29,12 @@ class NimzeroStripeExtension extends Extension
         // Apply the services
         $loader->load('services.yaml');
 
-		$configuration = new Configuration();
-		$mergedConfig = $this->processConfiguration($configuration,$configs);
+        // Process configuration
+        $configuration = new Configuration();
+        $mergedConfig = $this->processConfiguration($configuration, $configs);
 
         // Configure services with their parameters        
         $stripe = $container->getDefinition('nimzero_stripe_bundle.stripe_helper');
-        $stripe->addArgument('$stripe_config', $mergedConfig);
+        $stripe->replaceArgument('$stripe_config', $mergedConfig);
 	}
 }

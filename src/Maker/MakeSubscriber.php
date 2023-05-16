@@ -88,7 +88,7 @@ class MakeSubscriber extends AbstractMaker
         $subscriberClassNameDetails = $generator->createClassNameDetails(
             $name,
             'EventSubscriber\\',
-            'Subscriber'
+            'EventSubscriber'
         );
 
         $methods = [];

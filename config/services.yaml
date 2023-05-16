@@ -1,6 +1,5 @@
 services:
     _defaults:
-        public: false
         autowire: true
         autoconfigure: true
     
@@ -11,6 +10,8 @@ services:
 
     nimzero_stripe_bundle.stripe_helper:
         class: Nimzero\StripeBundle\Service\StripeHelper
+        arguments:
+            '$stripe_config': null
 
     nimzero_stripe_bundle.maker.webhook_from_events:
         class: Nimzero\StripeBundle\Maker\MakeWebhookFromEvents
